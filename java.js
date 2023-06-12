@@ -4,8 +4,33 @@ const tempElement = document.querySelector(".tempratur-value p")
 const descElement = document.querySelector(".temperature-description p")
 const locationElement = document.querySelector(".location p")
 
-fetch ("https://api.openweathermap.org/data/3.0/onecall?lat=56.6628826&lon=16.3662382&exclude={part}&appid=327c6ab2c31e9fa34141ecb5115d3ccb")
-.then(response => response.json())
-.then (data => console.log(data))
+//const weather = {
+//
+//    temperature : {
+//        value : 18,
+//        unit : "celcius"
+//    },
+//
+//    description : "few clouds",
+//    iconId : "01d",
+//    city : "London",
+//    country : "GB"
+//}
+//
 
-.catch(err => alert("wrong city name!"))
+iconElement.innerHTML = 
+`<img scr="icons/${weather.iconId}.png"/>`;
+
+tempElement.innerHTML = 
+`${weather.temperature.value} ° <span>C</span>`
+
+descElement.innerHTML = 
+
+locationElement.innerHTML = 
+
+
+//fetch ("https://api.openweathermap.org/data/2.5/weather?q=KALMAR&appid=327c6ab2c31e9fa34141ecb5115d3ccb")
+//.then(response => response.json())
+//.then (data => console.log(data))
+//
+//.catch(err => alert("wrong city name!"))
