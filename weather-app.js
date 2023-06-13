@@ -11,11 +11,12 @@ let weather = {
         .then ((data) => this.displayWeather(data))
     },
     displayWeather: function(data) {
-        const { name } = data.name;
+        const { name } = data;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        console.log(name,icon,description,temp,humidity,speed);
+        const { timezone } = data.timezone; //NEW, DATE / TIME.
+        console.log(name,icon,description,temp,humidity,speed,timezone);
         document.querySelector(".city").innerText = "Weather in " + name;
         document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +"@2x.png";
         document.querySelector(".description").innerText = description;
@@ -25,8 +26,9 @@ let weather = {
     }
 };
 
-// få innerText att funka. 
+
 //Ett huvudvärde som beskriver vädret (e.g. regn, moln, sol)
+//LÄGG IN EN GEOCODE FÖR FÖRSTA VÄRDET NÄR MAN ÖPPNAR HEMSIDAN.
 //Värden för temperatur, lufttryck, fuktighet och vind
 //Datum och tid (e.g. 2023-07-20 13:23)
 //Datum och tid ska uppdateras minst en gång per sekund och alla andra värden ska uppdateras minst var 30:e minut.
