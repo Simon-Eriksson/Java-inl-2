@@ -15,7 +15,8 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        const { timezone } = data.timezone; //NEW, DATE / TIME.
+        const { timezone } = data.timezone;
+        const { date } = data.dt;
         console.log(name,icon,description,temp,humidity,speed,timezone);
         document.querySelector(".city").innerText = "Weather in " + name;
         document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +"@2x.png";
@@ -23,8 +24,16 @@ let weather = {
         document.querySelector(".temp").innerText = temp + "°C";
         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
         document.querySelector(".wind").innerText = "Wind speed: " + speed + "km/h";
+        getDate(date,timezone)
     }
 };
+
+function getDate(dt, timezone) {
+    const utc_seconds = parseInt(dt, 10) + parseInt(timezone, 10);
+    const utc_milliseconds = utc_seconds * 1000;
+    const local_date = new Date(utc_milliseconds).toUTCString();
+    console.log(local_date);
+}
 
 
 //Ett huvudvärde som beskriver vädret (e.g. regn, moln, sol)
